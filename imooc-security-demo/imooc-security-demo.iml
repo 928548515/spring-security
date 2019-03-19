@@ -26,6 +26,7 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.0.31" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.18" level="project" />
     <orderEntry type="module" module-name="imooc-security-browser" />
     <orderEntry type="module" module-name="imooc-security-core" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-oauth2:1.2.1.RELEASE" level="project" />
