@@ -20,10 +20,10 @@ public class ConfigBean extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(timeInterceptor);
+        registry.addInterceptor(timeInterceptor).addPathPatterns("/user","/user/{id}");
     }
 
-    @Bean
+//    @Bean
     public FilterRegistrationBean timeFilter(){
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         TimeFilter timeFilter = new TimeFilter();

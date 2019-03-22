@@ -35,11 +35,11 @@ public class TestCntroller {
     @JsonView(User.UserDeatilView.class)
     public User getInfo(@PathVariable String id){
 //        throw new UserNotExistException(id);
-        throw new RuntimeException("user is null");
-//        User user = new User();
-//        user.setUsername("popo");
-//        user.setPassword("xxxxxx");
-//        return  user;
+//        throw new RuntimeException("user is null");
+        User user = new User();
+        user.setUsername("popo");
+        user.setPassword("xxxxxx");
+        return  user;
     }
 
 //    @MyFirstAnnotation(value = "xxx")
@@ -54,4 +54,7 @@ public class TestCntroller {
         user.setId("4");
         return  user;
     }
+
+
+
 }
