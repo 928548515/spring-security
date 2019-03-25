@@ -1,6 +1,9 @@
 package com.imooc.security.controller;
 
 import com.imooc.security.entity.FileInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.io.IOUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,18 +24,19 @@ public class FileController {
     private String folder =  "E:\\项目开发管理\\spring-security\\imooc-security-demo\\src\\main\\java\\com\\imooc\\security\\controller";
 
     @PostMapping
+    @ApiOperation("上传")
     public FileInfo upload(MultipartFile file) throws  Exception{
         System.out.println(file.getName());
         System.out.println(file.getOriginalFilename());
         System.out.println(file.getSize());
-//        String folder = "E:\\项目开发管理\\spring-security\\imooc-security-demo\\src\\main\\java\\com\\imooc\\security\\controller";
         File localFile = new File(folder, new Date().getTime() + ".txt");
         file.transferTo(localFile);
         return new FileInfo(localFile.getAbsolutePath());
     }
 
     @GetMapping("/{id}")
-    public void download(@PathVariable String id, HttpServletRequest request, HttpServletResponse response)throws Exception{
+    @ApiOperation(value = "下载")
+    public void download(@ApiParam("文件名") @PathVariable String id, HttpServletRequest request, HttpServletResponse response)throws Exception{
 
         try (InputStream inputStream   = new FileInputStream(new File(folder,id + ".txt"));
              OutputStream outputStream = response.getOutputStream();){

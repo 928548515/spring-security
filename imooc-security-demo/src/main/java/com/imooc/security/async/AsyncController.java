@@ -41,10 +41,7 @@ public class AsyncController {
                 return "success";
             }
         };
-        String futer = callable.call();
-
         logger.info("主线程返回。。。");
-        logger.info("result :" + JSONObject.toJSONString(callable));
         return callable;
     }
 

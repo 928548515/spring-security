@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.imooc.security.annotation.MyFirstAnnotation;
 import com.imooc.security.entity.User;
 import com.imooc.security.exception.UserNotExistException;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,7 @@ public class TestCntroller {
 
 //    @MyFirstAnnotation(value = "xxx")
     @PostMapping("/add")
+    @ApiOperation(value = "添加用户")
     public User CreateUser(@Valid @RequestBody User user, BindingResult errors){
         if (errors.hasErrors()){
                 errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));

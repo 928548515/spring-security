@@ -7,6 +7,12 @@ spring:
     password: 123456
   session:
     store-type: none
-security:
-  basic:
-    enabled: false
+#security:
+#  basic:
+#    enabled: false
+
+imooc:
+  security:
+    borwser:
+      loginPage: /demo-signIn.html
+
