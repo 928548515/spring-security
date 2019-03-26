@@ -1,6 +1,7 @@
 package com.imooc.security.browser.controller;
 
 import com.imooc.security.browser.pojo.SimpleResponse;
+import com.imooc.security.core.properties.SecurityProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +31,8 @@ public class BrowserSecurityController {
     //spring redirect工具
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+    @Autowired
+    private SecurityProperties securityProperties;
 
     @RequestMapping("/authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)  //返回一个401状态码
@@ -41,7 +44,7 @@ public class BrowserSecurityController {
             //判断字符串是否已.html结尾
             if (StringUtils.endsWithIgnoreCase(targetUrl,".html")){
                 //跳转
-                redirectStrategy.sendRedirect(request,response,"");
+                redirectStrategy.sendRedirect(request,response,securityProperties.getBrowser().getLoginPage());
             }
         }
         return new SimpleResponse("访问的服务需要身份认证,请引导用户到登录页");
