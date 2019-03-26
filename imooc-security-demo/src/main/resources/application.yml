@@ -11,8 +11,8 @@ spring:
 #  basic:
 #    enabled: false
 
-imooc:
-  security:
-    borwser:
-      loginPage: /demo-signIn.html
+#imooc:
+#  security:
+#    browser:
+#      loginPage: /demo-signIn.html
 
