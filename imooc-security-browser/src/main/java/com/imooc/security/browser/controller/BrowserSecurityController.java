@@ -20,29 +20,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+
 @RestController
 public class BrowserSecurityController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    //请求缓存
+    /** 请求缓存 */
     private RequestCache requestCache = new HttpSessionRequestCache();
 
-    //spring redirect工具
+    /** spring redirect工具 */
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Autowired
     private SecurityProperties securityProperties;
 
     @RequestMapping("/authentication/require")
-    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)  //返回一个401状态码
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)  /** 返回一个401状态码 */
     public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response)throws IOException {
         SavedRequest savedRequest = requestCache.getRequest(request, response);
         if (savedRequest != null ){
             String targetUrl = savedRequest.getRedirectUrl();
             logger.info("引发跳转的请求是："+targetUrl);
-            //判断字符串是否已.html结尾
-            if (StringUtils.endsWithIgnoreCase(targetUrl,".html")){
+            // 判断字符串是否已.html结尾
+            String suffix = ".html";
+            if (StringUtils.endsWithIgnoreCase(targetUrl,suffix)){
                 //跳转
                 redirectStrategy.sendRedirect(request,response,securityProperties.getBrowser().getLoginPage());
             }

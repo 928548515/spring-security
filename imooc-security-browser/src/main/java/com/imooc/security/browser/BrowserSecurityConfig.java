@@ -1,6 +1,7 @@
 package com.imooc.security.browser;
 
 import com.imooc.security.browser.authentication.ImoocAuthenicationSuccessHandler;
+import com.imooc.security.browser.authentication.ImoocAuthenticationFailureHandler;
 import com.imooc.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,9 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ImoocAuthenicationSuccessHandler imoocAuthenicationSuccessHandler;
 
+    @Autowired
+    private ImoocAuthenticationFailureHandler imoocAuthenticationFailureHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -31,14 +35,15 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
+                //登录成功后的处理器
                 .successHandler(imoocAuthenicationSuccessHandler)
+                //登录失败后的处理器
+                .failureHandler(imoocAuthenticationFailureHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require",securityProperties.getBrowser().getLoginPage()).permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .csrf().disable();
+                .anyRequest().authenticated()
+                .and().csrf().disable();
 //        super.configure(http);
     }
 }
