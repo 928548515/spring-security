@@ -12,8 +12,6 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class OperateAspect {
-
-
     @Pointcut("@annotation(com.imooc.security.annotation.MyFirstAnnotation)")
     public void annotationPointCut(){
 

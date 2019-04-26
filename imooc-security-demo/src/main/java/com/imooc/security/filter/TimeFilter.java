@@ -18,9 +18,9 @@ public class TimeFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         System.out.println("Time Filter start");
-        long time = new Date().getTime();
+        long time = System.currentTimeMillis();
         chain.doFilter(request,response);
-        System.out.println("time filter 耗时:"+ (new Date().getTime()-time));
+        System.out.println("time filter 耗时:"+ (System.currentTimeMillis()-time));
         System.out.println("Time Filter finish");
     }
 

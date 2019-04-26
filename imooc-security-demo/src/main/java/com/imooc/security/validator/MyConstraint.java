@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = MyConstraintValidator.class)
 public @interface MyConstraint {
 
-    String message();
+    String message() default "自定义注解，验证用户名是否是手机号";
 
     Class<?>[] groups() default { };
 

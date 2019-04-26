@@ -20,7 +20,7 @@ public class ConfigBean extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(timeInterceptor).addPathPatterns("/user","/user/{id}");
+//        registry.addInterceptor(timeInterceptor).addPathPatterns("/user","/user/{id}");
     }
 
 //    @Bean

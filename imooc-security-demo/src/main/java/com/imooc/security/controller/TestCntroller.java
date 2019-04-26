@@ -5,6 +5,8 @@ import com.imooc.security.annotation.MyFirstAnnotation;
 import com.imooc.security.entity.User;
 import com.imooc.security.exception.UserNotExistException;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,10 @@ public class TestCntroller {
         return  "hello security";
     }
 
+     private Logger logger = LoggerFactory.getLogger(getClass());
+
+
+    @MyFirstAnnotation(value = "xxx")
     @GetMapping
     @JsonView(User.UserSimpleView.class)
     public List<User> getUser(@RequestParam(required = false) String username){
@@ -43,17 +49,15 @@ public class TestCntroller {
         return  user;
     }
 
-//    @MyFirstAnnotation(value = "xxx")
+
     @PostMapping("/add")
     @ApiOperation(value = "添加用户")
     public User CreateUser(@Valid @RequestBody User user, BindingResult errors){
+        //如果验证不通过的处理
         if (errors.hasErrors()){
-                errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+                //打印错误
+                errors.getAllErrors().stream().forEach(error -> logger.info(error.getDefaultMessage()) );
         }
-//        System.out.println(user.getId());
-//        System.out.println(user.getUsername());
-//        System.out.println(user.getPassword());
-        user.setId("4");
         return  user;
     }
 

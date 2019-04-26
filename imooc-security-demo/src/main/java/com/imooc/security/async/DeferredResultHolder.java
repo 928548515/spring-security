@@ -14,6 +14,4 @@ public class DeferredResultHolder {
 
     private Map<String, DeferredResult<String>> map = new HashMap<>();
 
-
-
 }

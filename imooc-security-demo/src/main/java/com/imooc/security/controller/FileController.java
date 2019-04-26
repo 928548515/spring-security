@@ -29,7 +29,7 @@ public class FileController {
         System.out.println(file.getName());
         System.out.println(file.getOriginalFilename());
         System.out.println(file.getSize());
-        File localFile = new File(folder, new Date().getTime() + ".txt");
+        File localFile = new File(folder, System.currentTimeMillis() + ".txt");
         file.transferTo(localFile);
         return new FileInfo(localFile.getAbsolutePath());
     }
