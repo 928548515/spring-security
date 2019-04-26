@@ -41,7 +41,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(imoocAuthenticationFailureHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authentication/require",securityProperties.getBrowser().getLoginPage()).permitAll()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/authentication/require",securityProperties.getBrowser().getLoginPage(),"/code/image").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable();
 //        super.configure(http);
