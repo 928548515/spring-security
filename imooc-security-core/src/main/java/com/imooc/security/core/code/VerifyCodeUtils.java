@@ -55,6 +55,8 @@ public class VerifyCodeUtils{
         return verifyCode.toString();
     }
 
+
+
     /**
      * 生成随机验证码文件,并返回验证码值
      * @param w
@@ -261,15 +263,15 @@ public class VerifyCodeUtils{
 
     }
 
-    public static void main(String[] args) throws IOException{
-        File dir = new File("D:/verifies");
-        int w = 200, h = 80;
-        for(int i = 0; i < 50; i++){
-            String verifyCode = generateVerifyCode(4);
-            File file = new File(dir, verifyCode + ".jpg");
-            outputImage(w, h, file, verifyCode);
-        }
-    }
+//    public static void main(String[] args) throws IOException{
+//        File dir = new File("D:/verifies");
+//        int w = 200, h = 80;
+//        for(int i = 0; i < 50; i++){
+//            String verifyCode = generateVerifyCode(4);
+//            File file = new File(dir, verifyCode + ".jpg");
+//            outputImage(w, h, file, verifyCode);
+//        }
+//    }
 }
 
 
