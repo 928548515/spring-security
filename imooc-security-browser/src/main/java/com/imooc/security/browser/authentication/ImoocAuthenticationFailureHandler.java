@@ -29,5 +29,6 @@ public class ImoocAuthenticationFailureHandler implements AuthenticationFailureH
         logger.info("登陆失败！！！");
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(objectMapper.writeValueAsString(e.getMessage()));
+        response.getWriter().flush();
     }
 }

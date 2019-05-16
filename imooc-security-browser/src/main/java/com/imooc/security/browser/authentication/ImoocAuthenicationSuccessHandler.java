@@ -25,10 +25,8 @@ public class ImoocAuthenicationSuccessHandler implements AuthenticationSuccessHa
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
         logger.info("登录成功！！！！");
-
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(objectMapper.writeValueAsString(authentication));
-
-
+        response.getWriter().flush();
     }
 }
