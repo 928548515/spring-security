@@ -7,9 +7,13 @@ import com.imooc.security.exception.UserNotExistException;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.ServletWebRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +22,26 @@ import java.util.List;
 @RequestMapping("/user")
 public class TestCntroller {
 
+    @Autowired
+    private ProviderSignInUtils providerSignInUtils;
+
     @GetMapping("/hello")
     public String hello(){
         return  "hello security";
     }
 
      private Logger logger = LoggerFactory.getLogger(getClass());
+
+
+    @PostMapping("/regist")
+    public void regist(User user, HttpServletRequest request){
+
+        //不管是注冊
+        String userId = user.getUsername();
+        providerSignInUtils.doPostSignUp(userId,new ServletWebRequest(request));
+
+
+    }
 
 
     @MyFirstAnnotation(value = "xxx")

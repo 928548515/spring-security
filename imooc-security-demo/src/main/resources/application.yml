@@ -2,8 +2,8 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
-    url: jdbc:mysql://192.168.0.69:3308/cloudDB01?useUnicode=true&characterEncoding=utf8             # 数据库名称
-    username: root
+    url: jdbc:mysql://47.101.179.202:3306/imooc-demo?useUnicode=true&characterEncoding=utf8             # 数据库名称
+    username: pengyu
     password: 123456
   session:
     store-type: none
@@ -13,14 +13,19 @@ spring:
 
 imooc:
   security:
-#    browser:
+    browser:
 #      loginPage: /demo-signIn.html
+      signUpUrl: /demo-signUp.html
     code:
       image:
         length: 6
-        width: 100
-        url:
-          -/user
-          -/user/*
-
-
+        width: 80
+        urls:
+          - /user
+          - /user/*
+    social:
+      qq:
+        app-id: 101580860
+        app-secret: 8ca88442ca22768a6bca64b67d2bacb0
+        providerId: qq
+      filterProcessesUrl: /qqLogin

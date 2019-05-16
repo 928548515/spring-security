@@ -24,7 +24,6 @@ public class OperateAspect {
         Object retmsg=null;
         try {
             retmsg=joinPoint.proceed();
-//            System.err.println("++++++++"+retmsg);
         } catch (Throwable e) {
             e.printStackTrace();
         }
